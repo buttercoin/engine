@@ -1,0 +1,32 @@
+*.class
+*.log
+tmp/
+journal/
+logs/
+*.journal
+*.journal.*
+*.snapshot
+*.swp
+.idea/
+.idea_modules/
+*.iml
+.DS_Store
+*.spvchain
+*.wallet
+.cache
+
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+
+# Eclipse specific
+*.classpath
+*.project
+*.settings
