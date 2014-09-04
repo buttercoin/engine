@@ -40,4 +40,4 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
-&copy; 2014 DCFT Inc. All Rights Reserved.
+&copy; 2014 Buttercoin. All Rights Reserved.
