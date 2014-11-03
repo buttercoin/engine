@@ -84,7 +84,7 @@ package object book {
                   tally(fill)
                 }
                 true
-              case MatchSome => 
+              case MatchSome =>
                 val (_, open) = x.split(curOrder)
                 tally(curOrder)
                 curFill = Some(open.asInstanceOf[T]) //.asInstanceOf[FillOrder[T]])
@@ -115,7 +115,7 @@ package object book {
 
         val earned = if(res("spent").amount > 0 && res("earned").amount > 0 ) {
           if(res("residual").isEmpty) {
-            genFilled(fillWith, res("spent"), res("earned"))
+            genFilled(fillWith, fillWith.offered, res("earned"))
           } else {
             genReopened(fillWith, res("spent"), res("earned"))
           }
@@ -171,9 +171,6 @@ package object book {
         order
       }
 
-      // NOTE - This doesnt seem to be called by anyone externally,
-      //  but it should likely include accountId to ensure the order
-      //  being removed by the caller belongs to account (i.e. cancel)
       def removeById(id: UUID) = idMap.get(id).map(remove)
 
       def removeAll(orders: Set[OrderT]) = {
