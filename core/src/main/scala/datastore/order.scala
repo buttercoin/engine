@@ -1,4 +1,4 @@
-package org.buttercoin.jersey
+package org.buttercoin.engine
 
 import java.util.UUID
 import org.buttercoin.common.util._

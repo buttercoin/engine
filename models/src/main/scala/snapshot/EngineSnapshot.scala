@@ -1,10 +1,10 @@
-package org.buttercoin.jersey.models.snapshot
+package org.buttercoin.engine.models.snapshot
 
 import org.buttercoin.common.fees.FeeStrategy
 import org.buttercoin.common.models.core._
 import org.buttercoin.common.models.order.OrderID
 import org.buttercoin.common.models.orderInfo.OrderInfoHistory
-import org.buttercoin.jersey.models.Account
+import org.buttercoin.engine.models.Account
 
 import scala.collection.{ immutable => I }
 import scala.concurrent.stm._
@@ -35,33 +35,33 @@ case class OrderStoreSnapshot(
 )
 
 /**
- * The serialized form of all snapshotted Jersey elements
+ * The serialized form of all snapshotted Engine elements
  */
 @SerialVersionUID(1L)
-case class JerseySnapshot(
+case class EngineSnapshot(
   ledgers: I.List[LedgerSnapshot],
   markets: I.List[MarketSnapshot],
   orderStore: OrderStoreSnapshot
 )
 
-case class JerseySnapshotOffer(snap: JerseySnapshot)
+case class EngineSnapshotOffer(snap: EngineSnapshot)
 
 /**
- * A request for a snapshot of the entire Jersey system with synchronization
+ * A request for a snapshot of the entire Engine system with synchronization
  * support.
  */
-case class JerseySnapshotRequest() {
+case class EngineSnapshotRequest() {
   val ledgers: Ref[I.List[LedgerSnapshot]] = Ref(Nil)
   val markets: Ref[I.List[MarketSnapshot]] = Ref(Nil)
   val orderStore: Ref[Option[OrderStoreSnapshot]] = Ref(None)
 
   /**
    * A future which completes once all elements of the snapshot have been registered.
-   * The complete JerseySnapshot is provided when the future resolves.
+   * The complete EngineSnapshot is provided when the future resolves.
    *
    * It expects 4 ledger actors and 2 markets
    */
-  val future = Future[JerseySnapshot] {
+  val future = Future[EngineSnapshot] {
     atomic { implicit txn =>
       if(ledgers().length < 4  ||
          markets().length < 2  ||
@@ -71,8 +71,8 @@ case class JerseySnapshotRequest() {
     this.asSnapshot
   }
 
-  private def asSnapshot: JerseySnapshot = {
-    JerseySnapshot(
+  private def asSnapshot: EngineSnapshot = {
+    EngineSnapshot(
       ledgers.single.get,
       markets.single.get,
       orderStore.single.get.get

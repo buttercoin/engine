@@ -1,16 +1,16 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import akka.actor.Actor
 import org.buttercoin.common.fees._
-import org.buttercoin.jersey._
-import org.buttercoin.jersey.messages._
+import org.buttercoin.engine._
+import org.buttercoin.engine.messages._
 import org.buttercoin.common.messages._
 import org.buttercoin.common.models.money._
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.models.orderInfo.CreateOrder
 import org.eligosource.eventsourced.core.Message
-import org.buttercoin.jersey.models.Account
-import org.buttercoin.jersey.models.snapshot._
+import org.buttercoin.engine.models.Account
+import org.buttercoin.engine.models.snapshot._
 
 import scala.concurrent.stm._
 
@@ -121,7 +121,7 @@ class LedgerActor(val buffer: BufferAdapter,
       }
     }
 
-    case req: JerseySnapshotRequest => atomic { implicit txn =>
+    case req: EngineSnapshotRequest => atomic { implicit txn =>
       req.ledgers() = LedgerSnapshot(accounts.toList) :: req.ledgers()
     }
 

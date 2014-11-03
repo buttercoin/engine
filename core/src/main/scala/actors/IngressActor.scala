@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import akka.actor._
 import akka.pattern.{ask, pipe}
@@ -6,13 +6,13 @@ import akka.util.Timeout
 import concurrent.ExecutionContext.Implicits.global
 import org.buttercoin.common.messages._
 import org.buttercoin.common.actor._
-import org.buttercoin.jersey._
+import org.buttercoin.engine._
 import engine.{ STSNAP, LDSNAP }
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.stm._
-import org.buttercoin.jersey.models.snapshot._
+import org.buttercoin.engine.models.snapshot._
 import org.buttercoin.common.models.core._
 
 import scalaz._
@@ -21,7 +21,7 @@ import Scalaz._
 final case class LedgerTotalRequest(ledgers: Ref[List[LedgerSnapshot]] = Ref(Nil), accountsBlacklist: List[AccountID] = List()) {
   import org.buttercoin.common.models.money.Currency
   import org.buttercoin.common.models.currency._
-  import org.buttercoin.jersey.models.Account
+  import org.buttercoin.engine.models.Account
 
   val future = Future[TotalLedgerBalances] {
     atomic { implicit txn =>
@@ -76,7 +76,7 @@ class IngressActor(val buffer: BufferAdapter,
       x.future pipeTo sender
     }
 
-    case x: JerseySnapshotRequest => {
+    case x: EngineSnapshotRequest => {
       ledgerRouter ! akka.routing.Broadcast(x)
       atomic { implicit txn =>
         if(x.ledgers().length < 4) { retry }
@@ -88,7 +88,7 @@ class IngressActor(val buffer: BufferAdapter,
       buffer.publish(next)
     }
 
-    case JerseySnapshotOffer(snap) => {
+    case EngineSnapshotOffer(snap) => {
       snap.ledgers foreach { l =>
         l.accounts foreach { acct =>
           ledgerRouter ! AccountSnapshotOffer(acct._1, acct._2._1, acct._2._2)

@@ -2,7 +2,7 @@ package spec
 
 import org.scalatest.{ FunSpec, BeforeAndAfter, Matchers }
 
-import org.buttercoin.jersey.models.market.depth
+import org.buttercoin.engine.models.market.depth
 import org.buttercoin.common.models.currency._
 import org.buttercoin.common.models.money._
 import org.buttercoin.common.models.order

@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.messages
+package org.buttercoin.engine.messages
 
 import com.typesafe.config.Config
 import java.util.Date

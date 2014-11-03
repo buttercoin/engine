@@ -1,4 +1,4 @@
-package org.buttercoin.jersey
+package org.buttercoin.engine
 
 import java.util.UUID
 import org.buttercoin.common.util._
@@ -7,7 +7,7 @@ import org.buttercoin.common.models.money._
 import org.buttercoin.common.models.order
 import order.{ TradeCompletionType, LiquidityMaker, LiquidityTaker }
 import org.buttercoin.common.models.currency._
-import org.buttercoin.jersey.messages.LedgerDeposit
+import org.buttercoin.engine.messages.LedgerDeposit
 import org.buttercoin.common.messages.{ Request, CreditTrade }
 
 import scalaz.{ Order => zOrder, Ordering => zOrdering, _ }

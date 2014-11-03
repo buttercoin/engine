@@ -1,5 +1,5 @@
 import org.scalameter.api._
-import org.buttercoin.jersey._
+import org.buttercoin.engine._
 import org.buttercoin.common._
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.models.currency._

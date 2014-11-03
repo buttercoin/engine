@@ -14,7 +14,7 @@ import JacocoPlugin._
 object Build extends sbt.Build {
   import Dependencies._
 
-  val buildVersion = "1.12.0-SNAPSHOT"
+  val buildVersion = "1.0.0-SNAPSHOT"
 
   val buildSettings = Defaults.coreDefaultSettings ++ graphSettings ++ jacoco.settings ++ Seq(
     initialize ~= { _ => System.setProperty("jsse.enableSNIExtension", "false") }, // deal with handshake errors to github mvn repo's
@@ -87,8 +87,8 @@ object Build extends sbt.Build {
         _ => false
       },
       libraryDependencies ++=
-        compile(typesafeConfig, scalazCore, scalalogging, log4jApi, log4jToSlf4j, akkaActor)
-        ++ unittest(logbackClassic, scalaTest, scalaCheck, akkaTestkit)
+        compile(typesafeConfig, scalazCore, scalalogging, akkaActor)
+        ++ unittest(scalaTest, scalaCheck, akkaTestkit)
     )
 
   lazy val root = Project("root", file("."))
@@ -118,8 +118,7 @@ object Build extends sbt.Build {
     .settings(addArtifact(artifact in (Compile, assembly), assembly): _*)
     .settings(
       libraryDependencies ++=
-        compile(akkaSlf4j, eventsourcedCore, lmaxDisruptor, scopt,
-          logbackClassic, logstashEncoder, janino, shapeless) ++
+        compile(akkaSlf4j, lmaxDisruptor, shapeless) ++
         unittest(akkaTestkit, scalaMock, scalaTest, scalaCheck),
       name := "jersey",
       fork in run := true,

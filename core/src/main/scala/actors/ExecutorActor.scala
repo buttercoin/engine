@@ -1,11 +1,10 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import akka.actor._
 import org.buttercoin.common.actor.SetUpstream
 import org.buttercoin.common.messages._
-import org.buttercoin.jersey._
-import org.buttercoin.jersey.messages._
-import org.eligosource.eventsourced.core._
+import org.buttercoin.engine._
+import org.buttercoin.engine.messages._
 
 import scalaz._
 import Scalaz._
@@ -25,7 +24,7 @@ class ExecutorActor extends Actor with ActorLogging {
   }
 
   def broadcast(msg: AccountOperation): Unit = {
-    engineSet.foreach { x => x ! Message(Tracked(msg, nextSendSeq)) }
+    engineSet.foreach { x => x ! Tracked(msg, nextSendSeq) }
     nextSendSeq = nextSendSeq + 1
   }
 

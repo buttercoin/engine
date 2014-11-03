@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.fees.strategies
+package org.buttercoin.engine.fees.strategies
 
 import org.buttercoin.common.fees._
 import org.buttercoin.common._
@@ -29,7 +29,7 @@ class TradebotFeeFactory(protected val config: Config) extends StrategyFactory {
 }
 
 object FeeStrategies {
-  val feesConfig = ConfigFactory.load.getConfig("jersey.engine.fees")
+  val feesConfig = ConfigFactory.load.getConfig("engine.fees")
 
   def apply(name: String): StrategyFactory = {
     lookup(FeeStrategyID(name))

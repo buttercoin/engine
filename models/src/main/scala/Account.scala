@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.models
+package org.buttercoin.engine.models
 
 import java.util.UUID
 import org.buttercoin.common.models.currency._

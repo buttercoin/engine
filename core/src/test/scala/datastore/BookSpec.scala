@@ -5,7 +5,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.util._
-import org.buttercoin.jersey._
+import org.buttercoin.engine._
 import messages.LedgerDeposit
 import org.buttercoin.common.messages._
 import org.buttercoin.common.models.currency._

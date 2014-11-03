@@ -2,7 +2,7 @@ package test.datastore
 
 import org.scalatest.{ FunSpec, BeforeAndAfter, Matchers }
 
-import org.buttercoin.jersey.models.{ Account, Balance }
+import org.buttercoin.engine.models.{ Account, Balance }
 import org.buttercoin.common.models.core._
 import org.buttercoin.common.models.currency._
 import org.buttercoin.common.models.money._

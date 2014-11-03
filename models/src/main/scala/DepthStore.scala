@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.models.market
+package org.buttercoin.engine.models.market
 
 import org.buttercoin.common.models.order
 import org.buttercoin.common.models.currency._

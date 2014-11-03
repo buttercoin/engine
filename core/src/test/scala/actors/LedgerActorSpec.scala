@@ -7,19 +7,19 @@ import scala.language.implicitConversions
 import org.scalatest.{ FunSpec, Matchers }
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalamock.scalatest.MockFactory
-import org.buttercoin.jersey.messages._
+import org.buttercoin.engine.messages._
 import org.buttercoin.common.messages._
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.models.currency._
 import org.buttercoin.common.models.money.CurrencyImplicits._
-import org.buttercoin.jersey.actors._
-import org.buttercoin.jersey.{ engine, EngineEvent }
+import org.buttercoin.engine.actors._
+import org.buttercoin.engine.{ engine, EngineEvent }
 import java.util.UUID
 import concurrent.ExecutionContext.Implicits.global
 import org.buttercoin.common.testhelper.Gen._
 import scala.concurrent.duration._
 import scala.language.postfixOps
-import org.buttercoin.jersey.fees.strategies.FeeStrategies
+import org.buttercoin.engine.fees.strategies.FeeStrategies
 
 import scalaz._
 import Scalaz._

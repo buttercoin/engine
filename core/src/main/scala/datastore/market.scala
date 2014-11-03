@@ -1,4 +1,4 @@
-package org.buttercoin.jersey
+package org.buttercoin.engine
 
 import org.buttercoin.common.util._
 import org.buttercoin.common.models.core._

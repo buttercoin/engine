@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import org.buttercoin.common.messages._
 import org.buttercoin.common.actor.Upstream
@@ -9,9 +9,9 @@ import org.buttercoin.common.models.order
 import org.buttercoin.common.models.order.OrderID
 import org.buttercoin.common.models.orderInfo._
 import org.buttercoin.common.util._
-import org.buttercoin.jersey.messages.ChannelMessage
-import org.buttercoin.jersey.messages.{ LedgerDeposit, ChannelMessage }
-import org.buttercoin.jersey.models.snapshot._
+import org.buttercoin.engine.messages.ChannelMessage
+import org.buttercoin.engine.messages.{ LedgerDeposit, ChannelMessage }
+import org.buttercoin.engine.models.snapshot._
 
 import akka.actor.ActorRef
 import akka.pattern.ask
@@ -127,11 +127,11 @@ trait OrderStore extends Upstream {
     case GetTotalOpenOrders =>
       sender ! TotalOpenOrders(totalCommittedFunds)
 
-    case x: JerseySnapshotRequest => atomic { implicit txn =>
+    case x: EngineSnapshotRequest => atomic { implicit txn =>
       x.orderStore() = Some(OrderStoreSnapshot(ordersById.toList, ordersByAcct.toList))
     }
 
-    case JerseySnapshotOffer(snap) => {
+    case EngineSnapshotOffer(snap) => {
       ordersById = snap.orderStore.ordersById.toMap
       ordersByAcct = snap.orderStore.ordersByAcct.toMap
       sender ! 'OK

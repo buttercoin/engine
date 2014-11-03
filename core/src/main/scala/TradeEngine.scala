@@ -1,4 +1,4 @@
-package org.buttercoin.jersey
+package org.buttercoin.engine
 
 import akka.actor._
 import com.lmax.disruptor.{ util => _, _ }
@@ -9,9 +9,8 @@ import org.buttercoin.common.models.currency._
 import org.buttercoin.common.models.money._
 import org.buttercoin.common.models.order
 import org.buttercoin.common.models.orderInfo._
-import org.buttercoin.jersey.models.snapshot._
-import org.buttercoin.jersey.messages._
-import org.eligosource.eventsourced.core.Message
+import org.buttercoin.engine.models.snapshot._
+import org.buttercoin.engine.messages._
 import scala.concurrent.stm._
 
 import scalaz._
@@ -28,7 +27,7 @@ package object engine {
   case object Nop extends Op
   case class CO(order: CreateOrder) extends Op
   case class XO(order: CancelOrder) extends Op
-  case class STSNAP(snap: JerseySnapshotRequest) extends Op
+  case class STSNAP(snap: EngineSnapshotRequest) extends Op
   case class LDSNAP(snap: Seq[MarketSnapshot]) extends Op
 }
 
@@ -74,7 +73,7 @@ class TradeEngine(disruptor: Disruptor[EngineEvent], executor: ActorRef) extends
   }
 
   def route: PartialFunction[Result, RoutedMessage] = {
-    case i: order.Event => ChannelMessage(Message(i), "org.buttercoin.order.event")
+    case i: order.Event => ChannelMessage(i, "org.buttercoin.order.event")
     case t: Ticker => BroadcastMessage(t)
   }
 
@@ -125,7 +124,7 @@ class TradeEngine(disruptor: Disruptor[EngineEvent], executor: ActorRef) extends
       }
   }
 
-  def createSnapshot(snap: JerseySnapshotRequest): OperationResult = atomic { implicit txn =>
+  def createSnapshot(snap: EngineSnapshotRequest): OperationResult = atomic { implicit txn =>
     snap.markets() = List(MarketSnapshot("USD", "BTC", usdbtcMarket))
     Nil -> Nil.success
   }

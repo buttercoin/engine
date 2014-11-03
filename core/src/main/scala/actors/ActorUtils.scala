@@ -1,7 +1,7 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import akka.actor.ActorRef
-import org.buttercoin.jersey.EngineEvent
+import org.buttercoin.engine.EngineEvent
 import org.buttercoin.common.messages.AccountOperation
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.models.order.OrderID

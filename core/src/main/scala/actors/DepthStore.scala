@@ -1,9 +1,9 @@
-package org.buttercoin.jersey.actors
+package org.buttercoin.engine.actors
 
 import org.buttercoin.common.messages._
 import org.buttercoin.common.actor.Upstream
 import org.buttercoin.common.models.currency._
-import org.buttercoin.jersey.models.market.depth
+import org.buttercoin.engine.models.market.depth
 
 import akka.actor.ActorRef
 

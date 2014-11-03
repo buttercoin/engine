@@ -1,4 +1,4 @@
-package org.buttercoin.jersey.fees.strategies
+package org.buttercoin.engine.fees.strategies
 
 import org.buttercoin.common.fees._
 import org.buttercoin.common.messages._

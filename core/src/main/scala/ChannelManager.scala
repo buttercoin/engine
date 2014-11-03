@@ -1,4 +1,4 @@
-package org.buttercoin.jersey
+package org.buttercoin.engine
 
 import org.buttercoin.common.messages._
 import org.buttercoin.common.actor._
@@ -8,7 +8,7 @@ import scala.collection.mutable.{ HashMap, MultiMap, Set }
 trait ChannelManager extends ComposableActor with ActorLogging {
   val channelMap = new HashMap[String, Set[ActorRef]] with MultiMap[String, ActorRef]
   val actorMap = new HashMap[ActorRef, Set[String]] with MultiMap[ActorRef, String]
-  
+
   always {
     case RegisterForBroadcast(actor) =>
       registerForChannel("broadcast")(actor)

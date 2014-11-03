@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 
 import scala.language.postfixOps
 import scala.language.implicitConversions
-import org.buttercoin.jersey.actors._
+import org.buttercoin.engine.actors._
 import org.buttercoin.common.models.currency._
 import org.buttercoin.common.models.money.CurrencyImplicits._
 import org.buttercoin.common.actor.SetUpstream
