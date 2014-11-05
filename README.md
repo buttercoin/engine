@@ -7,7 +7,7 @@ This is a subset of the Buttercoin.com codebase for performing order matching, r
 
 - `common` contains code that is or likely will be shared by other systems.
 - `core` provides most of the engine functionality.
-- `models` provides some data models and the notion of an exchange snapshot. Parts of `core` should probably be moved here.
+- `models` provides some data models and the notion of an engine snapshot. Parts of `core` should probably be moved here.
 - `perf-testing` has a set of [ScalaMeter](http://scalameter.github.io/) micro-benchmarks.
 
 This repo doesn't yet include mechanisims for handling user accounts, processing external transactions, connecting over HTTP, or many other things, since those are largely separable concerns.
