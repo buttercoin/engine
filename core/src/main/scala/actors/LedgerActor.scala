@@ -8,7 +8,6 @@ import org.buttercoin.common.messages._
 import org.buttercoin.common.models.money._
 import org.buttercoin.common.models.core.AccountID
 import org.buttercoin.common.models.orderInfo.CreateOrder
-import org.eligosource.eventsourced.core.Message
 import org.buttercoin.engine.models.Account
 import org.buttercoin.engine.models.snapshot._
 
