@@ -1,5 +1,5 @@
-Buttercoin Engine
-=================
+Buttercoin Trade Engine [![Build Status](https://travis-ci.org/buttercoin/engine.svg)](https://travis-ci.org/buttercoin/engine)
+=======================
 
 #### Overview
 
@@ -50,4 +50,4 @@ For more information on SemVer, please visit http://semver.org/.
 
 This repo is MIT licensed. We'll be adding a CLA soon.
 
-&copy; 2014 Buttercoin. All Rights Reserved.
+&copy; 2014-2015 Buttercoin Inc. All Rights Reserved.
